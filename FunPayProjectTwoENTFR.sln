@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunPayProjectTwoENTFR", "FunPayProjectTwoENTFR\FunPayProjectTwoENTFR.csproj", "{206D9203-15C7-421A-8CB1-3A3346F7708E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{206D9203-15C7-421A-8CB1-3A3346F7708E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{206D9203-15C7-421A-8CB1-3A3346F7708E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{206D9203-15C7-421A-8CB1-3A3346F7708E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{206D9203-15C7-421A-8CB1-3A3346F7708E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3BC3A59-9D71-4B6B-848F-8487D21BF2FA}
+	EndGlobalSection
+EndGlobal

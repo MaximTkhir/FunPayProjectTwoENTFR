@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LastChangeFourPrgFunPayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="int" Nullable="false" />
+          <Property Name="ClientFirstName" Type="varchar" MaxLength="255" />
+          <Property Name="ClientLastName" Type="varchar" MaxLength="255" />
+          <Property Name="ClientEmail" Type="varchar" MaxLength="255" />
+          <Property Name="ClientPhone" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Reviews">
+          <Key>
+            <PropertyRef Name="ReviewID" />
+          </Key>
+          <Property Name="ReviewID" Type="int" Nullable="false" />
+          <Property Name="ClientRating" Type="int" />
+          <Property Name="SellerRating" Type="int" />
+          <Property Name="SellerReviewText" Type="text" />
+          <Property Name="SellerID" Type="int" />
+          <Property Name="ClientID" Type="int" />
+        </EntityType>
+        <EntityType Name="Sellers">
+          <Key>
+            <PropertyRef Name="SellerID" />
+          </Key>
+          <Property Name="SellerID" Type="int" Nullable="false" />
+          <Property Name="SellerFirstName" Type="varchar" MaxLength="255" />
+          <Property Name="SellerLastName" Type="varchar" MaxLength="255" />
+          <Property Name="SellerEmail" Type="varchar" MaxLength="255" />
+          <Property Name="SellerPhone" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LastChangeFourPrgFunPay.dbo.LastChangeBaseViewData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LastChangeBaseViewData">
+          <Key>
+            <PropertyRef Name="Expr1" />
+            <PropertyRef Name="ReviewID" />
+            <PropertyRef Name="Expr2" />
+          </Key>
+          <Property Name="ClientFirstName" Type="varchar" MaxLength="255" />
+          <Property Name="ClientLastName" Type="varchar" MaxLength="255" />
+          <Property Name="ClientEmail" Type="varchar" MaxLength="255" />
+          <Property Name="ClientPhone" Type="varchar" MaxLength="20" />
+          <Property Name="SellerRating" Type="int" />
+          <Property Name="SellerReviewText" Type="text" />
+          <Property Name="SellerFirstName" Type="varchar" MaxLength="255" />
+          <Property Name="SellerLastName" Type="varchar" MaxLength="255" />
+          <Property Name="SellerEmail" Type="varchar" MaxLength="255" />
+          <Property Name="SellerPhone" Type="varchar" MaxLength="20" />
+          <Property Name="ClientRating" Type="int" />
+          <Property Name="SellerID" Type="int" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="Expr1" Type="int" Nullable="false" />
+          <Property Name="ReviewID" Type="int" Nullable="false" />
+          <Property Name="Expr2" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LastChangeFourPrgFunPay.dbo.View_1Last' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_1Last">
+          <Key>
+            <PropertyRef Name="Expr1" />
+            <PropertyRef Name="ReviewID" />
+            <PropertyRef Name="Expr2" />
+          </Key>
+          <Property Name="ClientFirstName" Type="varchar" MaxLength="255" />
+          <Property Name="ClientLastName" Type="varchar" MaxLength="255" />
+          <Property Name="ClientEmail" Type="varchar" MaxLength="255" />
+          <Property Name="ClientPhone" Type="varchar" MaxLength="20" />
+          <Property Name="SellerRating" Type="int" />
+          <Property Name="SellerReviewText" Type="text" />
+          <Property Name="SellerFirstName" Type="varchar" MaxLength="255" />
+          <Property Name="SellerLastName" Type="varchar" MaxLength="255" />
+          <Property Name="SellerEmail" Type="varchar" MaxLength="255" />
+          <Property Name="SellerPhone" Type="varchar" MaxLength="20" />
+          <Property Name="ClientRating" Type="int" />
+          <Property Name="SellerID" Type="int" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="Expr1" Type="int" Nullable="false" />
+          <Property Name="ReviewID" Type="int" Nullable="false" />
+          <Property Name="Expr2" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Reviews__ClientI__4E88ABD4">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reviews__SellerI__4D94879B">
+          <End Role="Sellers" Type="Self.Sellers" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sellers">
+              <PropertyRef Name="SellerID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="SellerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LastChangeFourPrgFunPayModelStoreContainer">
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sellers" EntityType="Self.Sellers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LastChangeBaseViewData" EntityType="Self.LastChangeBaseViewData" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LastChangeBaseViewData].[ClientFirstName] AS [ClientFirstName], 
+    [LastChangeBaseViewData].[ClientLastName] AS [ClientLastName], 
+    [LastChangeBaseViewData].[ClientEmail] AS [ClientEmail], 
+    [LastChangeBaseViewData].[ClientPhone] AS [ClientPhone], 
+    [LastChangeBaseViewData].[SellerRating] AS [SellerRating], 
+    [LastChangeBaseViewData].[SellerReviewText] AS [SellerReviewText], 
+    [LastChangeBaseViewData].[SellerFirstName] AS [SellerFirstName], 
+    [LastChangeBaseViewData].[SellerLastName] AS [SellerLastName], 
+    [LastChangeBaseViewData].[SellerEmail] AS [SellerEmail], 
+    [LastChangeBaseViewData].[SellerPhone] AS [SellerPhone], 
+    [LastChangeBaseViewData].[ClientRating] AS [ClientRating], 
+    [LastChangeBaseViewData].[SellerID] AS [SellerID], 
+    [LastChangeBaseViewData].[ClientID] AS [ClientID], 
+    [LastChangeBaseViewData].[Expr1] AS [Expr1], 
+    [LastChangeBaseViewData].[ReviewID] AS [ReviewID], 
+    [LastChangeBaseViewData].[Expr2] AS [Expr2]
+    FROM [dbo].[LastChangeBaseViewData] AS [LastChangeBaseViewData]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_1Last" EntityType="Self.View_1Last" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_1Last].[ClientFirstName] AS [ClientFirstName], 
+    [View_1Last].[ClientLastName] AS [ClientLastName], 
+    [View_1Last].[ClientEmail] AS [ClientEmail], 
+    [View_1Last].[ClientPhone] AS [ClientPhone], 
+    [View_1Last].[SellerRating] AS [SellerRating], 
+    [View_1Last].[SellerReviewText] AS [SellerReviewText], 
+    [View_1Last].[SellerFirstName] AS [SellerFirstName], 
+    [View_1Last].[SellerLastName] AS [SellerLastName], 
+    [View_1Last].[SellerEmail] AS [SellerEmail], 
+    [View_1Last].[SellerPhone] AS [SellerPhone], 
+    [View_1Last].[ClientRating] AS [ClientRating], 
+    [View_1Last].[SellerID] AS [SellerID], 
+    [View_1Last].[ClientID] AS [ClientID], 
+    [View_1Last].[Expr1] AS [Expr1], 
+    [View_1Last].[ReviewID] AS [ReviewID], 
+    [View_1Last].[Expr2] AS [Expr2]
+    FROM [dbo].[View_1Last] AS [View_1Last]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Reviews__ClientI__4E88ABD4" Association="Self.FK__Reviews__ClientI__4E88ABD4">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reviews__SellerI__4D94879B" Association="Self.FK__Reviews__SellerI__4D94879B">
+            <End Role="Sellers" EntitySet="Sellers" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LastChangeFourPrgFunPayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="Int32" Nullable="false" />
+          <Property Name="ClientFirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ClientLastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ClientEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ClientPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK__Reviews__ClientI__4E88ABD4" FromRole="Clients" ToRole="Reviews" />
+        </EntityType>
+        <EntityType Name="Reviews">
+          <Key>
+            <PropertyRef Name="ReviewID" />
+          </Key>
+          <Property Name="ReviewID" Type="Int32" Nullable="false" />
+          <Property Name="ClientRating" Type="Int32" />
+          <Property Name="SellerRating" Type="Int32" />
+          <Property Name="SellerReviewText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SellerID" Type="Int32" />
+          <Property Name="ClientID" Type="Int32" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK__Reviews__ClientI__4E88ABD4" FromRole="Reviews" ToRole="Clients" />
+          <NavigationProperty Name="Sellers" Relationship="Self.FK__Reviews__SellerI__4D94879B" FromRole="Reviews" ToRole="Sellers" />
+        </EntityType>
+        <EntityType Name="Sellers">
+          <Key>
+            <PropertyRef Name="SellerID" />
+          </Key>
+          <Property Name="SellerID" Type="Int32" Nullable="false" />
+          <Property Name="SellerFirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SellerLastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SellerEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SellerPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK__Reviews__SellerI__4D94879B" FromRole="Sellers" ToRole="Reviews" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="LastChangeBaseViewData">
+          <Key>
+            <PropertyRef Name="Expr1" />
+            <PropertyRef Name="ReviewID" />
+            <PropertyRef Name="Expr2" />
+          </Key>
+          <Property Name="ClientFirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ClientLastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ClientEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ClientPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SellerRating" Type="Int32" />
+          <Property Name="SellerReviewText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SellerFirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SellerLastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SellerEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SellerPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ClientRating" Type="Int32" />
+          <Property Name="SellerID" Type="Int32" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="Expr1" Type="Int32" Nullable="false" />
+          <Property Name="ReviewID" Type="Int32" Nullable="false" />
+          <Property Name="Expr2" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="View_1Last">
+          <Key>
+            <PropertyRef Name="Expr1" />
+            <PropertyRef Name="ReviewID" />
+            <PropertyRef Name="Expr2" />
+          </Key>
+          <Property Name="ClientFirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ClientLastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ClientEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ClientPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SellerRating" Type="Int32" />
+          <Property Name="SellerReviewText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SellerFirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SellerLastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SellerEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SellerPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ClientRating" Type="Int32" />
+          <Property Name="SellerID" Type="Int32" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="Expr1" Type="Int32" Nullable="false" />
+          <Property Name="ReviewID" Type="Int32" Nullable="false" />
+          <Property Name="Expr2" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Reviews__ClientI__4E88ABD4">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reviews__SellerI__4D94879B">
+          <End Role="Sellers" Type="Self.Sellers" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sellers">
+              <PropertyRef Name="SellerID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="SellerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LastChangeFourPrgFunPayEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="Reviews" EntityType="Self.Reviews" />
+          <EntitySet Name="Sellers" EntityType="Self.Sellers" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="LastChangeBaseViewData" EntityType="Self.LastChangeBaseViewData" />
+          <EntitySet Name="View_1Last" EntityType="Self.View_1Last" />
+          <AssociationSet Name="FK__Reviews__ClientI__4E88ABD4" Association="Self.FK__Reviews__ClientI__4E88ABD4">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reviews__SellerI__4D94879B" Association="Self.FK__Reviews__SellerI__4D94879B">
+            <End Role="Sellers" EntitySet="Sellers" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LastChangeFourPrgFunPayModelStoreContainer" CdmEntityContainer="LastChangeFourPrgFunPayEntities">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="LastChangeFourPrgFunPayModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ClientFirstName" ColumnName="ClientFirstName" />
+                <ScalarProperty Name="ClientLastName" ColumnName="ClientLastName" />
+                <ScalarProperty Name="ClientEmail" ColumnName="ClientEmail" />
+                <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="LastChangeFourPrgFunPayModel.Reviews">
+              <MappingFragment StoreEntitySet="Reviews">
+                <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+                <ScalarProperty Name="ClientRating" ColumnName="ClientRating" />
+                <ScalarProperty Name="SellerRating" ColumnName="SellerRating" />
+                <ScalarProperty Name="SellerReviewText" ColumnName="SellerReviewText" />
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sellers">
+            <EntityTypeMapping TypeName="LastChangeFourPrgFunPayModel.Sellers">
+              <MappingFragment StoreEntitySet="Sellers">
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+                <ScalarProperty Name="SellerFirstName" ColumnName="SellerFirstName" />
+                <ScalarProperty Name="SellerLastName" ColumnName="SellerLastName" />
+                <ScalarProperty Name="SellerEmail" ColumnName="SellerEmail" />
+                <ScalarProperty Name="SellerPhone" ColumnName="SellerPhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="LastChangeFourPrgFunPayModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LastChangeBaseViewData">
+            <EntityTypeMapping TypeName="LastChangeFourPrgFunPayModel.LastChangeBaseViewData">
+              <MappingFragment StoreEntitySet="LastChangeBaseViewData">
+                <ScalarProperty Name="ClientFirstName" ColumnName="ClientFirstName" />
+                <ScalarProperty Name="ClientLastName" ColumnName="ClientLastName" />
+                <ScalarProperty Name="ClientEmail" ColumnName="ClientEmail" />
+                <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+                <ScalarProperty Name="SellerRating" ColumnName="SellerRating" />
+                <ScalarProperty Name="SellerReviewText" ColumnName="SellerReviewText" />
+                <ScalarProperty Name="SellerFirstName" ColumnName="SellerFirstName" />
+                <ScalarProperty Name="SellerLastName" ColumnName="SellerLastName" />
+                <ScalarProperty Name="SellerEmail" ColumnName="SellerEmail" />
+                <ScalarProperty Name="SellerPhone" ColumnName="SellerPhone" />
+                <ScalarProperty Name="ClientRating" ColumnName="ClientRating" />
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_1Last">
+            <EntityTypeMapping TypeName="LastChangeFourPrgFunPayModel.View_1Last">
+              <MappingFragment StoreEntitySet="View_1Last">
+                <ScalarProperty Name="ClientFirstName" ColumnName="ClientFirstName" />
+                <ScalarProperty Name="ClientLastName" ColumnName="ClientLastName" />
+                <ScalarProperty Name="ClientEmail" ColumnName="ClientEmail" />
+                <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+                <ScalarProperty Name="SellerRating" ColumnName="SellerRating" />
+                <ScalarProperty Name="SellerReviewText" ColumnName="SellerReviewText" />
+                <ScalarProperty Name="SellerFirstName" ColumnName="SellerFirstName" />
+                <ScalarProperty Name="SellerLastName" ColumnName="SellerLastName" />
+                <ScalarProperty Name="SellerEmail" ColumnName="SellerEmail" />
+                <ScalarProperty Name="SellerPhone" ColumnName="SellerPhone" />
+                <ScalarProperty Name="ClientRating" ColumnName="ClientRating" />
+                <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
